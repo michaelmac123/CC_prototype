@@ -7,7 +7,7 @@ require "rack/contrib/try_static"
 require "middleman-smusher"
 
 # Build the static site when the app boots
-  # "bundle exec middleman build"
+"bundle exec middleman build"
 
 # require File.expand_path("../rack_try_static", __FILE__)
 
