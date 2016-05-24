@@ -1,0 +1,38 @@
+%h2.page-header
+  %span Connected with Caller
+  %small
+  %small.pull-right.text-right
+    %span Calls Answered Today: 1
+    %br
+    %span Calls Answered This Week: 3
+
+.callModule.col-md-10.col-md-push-2
+  .row.margin-gap10
+    .col-md-10
+      %h5 If caller picks up:
+      .alert-warning.alert.alert-info.margin-gap5
+        %h5.margin-topgap0 Ask Question
+        %p.padding-sidegap5.italic><
+          Hi. This is &lt;First Name&gt; and I'm returning a call I missed from this number to Call A Pro. Were you looking for a contractor? We can help you find one in your area.
+        %h5 For voicemail/answering machines:
+      .alert-info.alert.alert-info.margin-bottomgap5
+        %h5.margin-topgap0 Inform Caller
+        %p.padding-sidegap5.italic><
+          Hi. This is &lt;First Name&gt; and I'm returning a call I missed from this number to Call A Pro. If you need help finding a contractor in your area please give us a call back at 888-523-6989. Thanks and have a great day.
+
+      .lead_description
+        %h5 Lead Description
+        .well Personal Injury Lawyer
+
+    .col-xs-2.clear-left.col-xs-offset-1
+      %button.btn.btn-danger{ type:"button", ng:{ click:"tab.selectTab(5)" } }
+        %i.fa.fa-times.fa-lg
+        Remove
+    .col-xs-2.col-xs-offset-1
+      %button.btn.btn-warning{ type: "button", ng:{ click:"tab.selectTab(1)"} }
+        %i.fa.fa-bell-slash.fa-lg
+        Snooze
+    .col-xs-2.col-xs-offset-1
+      %button.btn.btn-success{ type: "button", ng:{ click:"tab.selectTab(6)"} }
+        %i.fa.fa-check.fa-lg
+        Proceed With Call

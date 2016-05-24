@@ -1,0 +1,85 @@
+%h2.page-header
+  %span Lead Fills
+  %small (Click any entry to dial lead phone)
+  %small.pull-right.text-right
+    %span Calls Answered Today: 0
+    %br
+    %span Calls Answered This Week: 2
+.callList.col-md-12
+  .table.table-bordered.lead-fill-table
+    .table-header.callList-tablehead
+      .table-col-10><
+        .ghost-cell
+          %span Name
+      .table-col-10><
+        .ghost-cell
+          %span Phone Number
+      .table-col-10><
+        .ghost-cell
+          %span Category
+      .table-col-10><
+        .ghost-cell
+          %span Affiliate Slug
+      .table-col-10><
+        .ghost-cell
+          %span Received At
+      .table-col-10><
+        .ghost-cell
+          %span Zip Code
+      .table-col-10><
+        .ghost-cell
+          %span Time Zone
+      .table-col-10><
+        .ghost-cell
+          %span Description
+      .table-col-10><
+        .ghost-cell
+          %span Previously Called
+      .table-col-10><
+        .ghost-cell
+          %span Remove
+
+    .callList-tablebody.table-body
+      .table-row{ ng:{repeat: "lead in callCenter.leads", click: "tab.selectTab(4)" } }
+        .table-col-10.caller_name><
+          .ghost-cell
+            %span {{lead.name}}
+        .table-col-10.from><
+          .ghost-cell
+            %span {{lead.phoneNumber}}
+
+        .table-col-10.category><
+          .ghost-cell
+            %span {{lead.category}}
+
+        .table-col-10.affiliate_slug><
+          .ghost-cell
+            %span {{lead.affiliate_slug}}
+
+        .table-col-10.created_at><
+          .ghost-cell
+            %span {{lead.created_at}}
+
+        .table-col-10.zip_code><
+          .ghost-cell
+            %span {{lead.zip_code}}
+
+        .table-col-10.time_zone><
+          .ghost-cell
+            %span {{lead.time_zone}}
+
+        .table-col-10.description.lead-fill-table-cell><
+          .ghost-cell
+            %span
+              %p><
+                {{lead.description}}
+
+        .table-col-10.snooze_info><
+          .ghost-cell
+            %span {{lead.previously_called}}
+
+        .table-col-10.remove_button.text-center><
+          .ghost-cell
+            %span
+              %button{ type: "button", class: "btn btn-sm btn-danger"}
+                %i.fa.fa-times.fa-lg

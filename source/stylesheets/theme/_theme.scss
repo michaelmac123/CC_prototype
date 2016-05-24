@@ -1,0 +1,432 @@
+.strikeout {  text-decoration:line-through; }
+.profanity {
+  @include prefix(box-shadow, 0 0 3px darken($lemon, 20), moz webkit o ms);
+  @include prefix(border-radius, 2px, moz webkit o ms);
+  background:     $lemon;
+  color:          $alertred;
+  padding:        3px 2px; }
+
+// Base styles
+// ------------------------------------------------------------------------
+body {
+  color:          darken($dark-gray, 20);
+  font-size:      12px; }
+
+.spacer-none {
+  margin: 0 !important;
+  padding: 0 !important; }
+
+.spacer-small {
+  padding:        .2em 0;
+  &.top {
+    padding-bottom:0; }
+  &.bottom {
+    padding-top:0; } }
+
+.spacer-medium {
+  padding:        .5em 0;
+  &.top {
+    padding-bottom:0; }
+  &.bottom {
+    padding-top:0; } }
+
+.spacer-large {
+  padding:        1em 0;
+  &.top {
+    padding-bottom:0; }
+  &.bottom {
+    padding-top:0; } }
+
+.spacer-xlarge {
+  padding:        1.5em 0;
+  &.top {
+    padding-bottom:0; }
+  &.bottom {
+    padding-top:0; } }
+
+.spacer-xxlarge {
+  padding:        2em 0;
+    &.top {
+      padding-bottom:0; }
+    &.bottom {
+      padding-top:0; } }
+
+.clear-left {
+  clear:          left; }
+.clear-right {
+  clear:          right; }
+.clear-both {
+  clear:          both; }
+
+.overflow-hidden {
+  overflow:       hidden; }
+
+.inline-block {
+  @extend %inline-block; }
+
+
+// Typography
+// ------------------------------------------------------------------------
+h1, h2, h3 {
+  @extend .dress-class; }
+h4, h5, h6 {
+  @extend .dress-class; }
+p, table, ul, li, dl, dt, dl, span, label {
+  @extend .dress-class; }
+
+.italic {
+  font-style:     italic; }
+
+label {
+  color:          $light-blue;
+  font:{
+    size:         1.1em;
+    weight:       normal;} }
+
+.page-header {
+  border-bottom:  1px solid darken($offwhite, 10);
+  color:          $medium-blue;
+  font-size:      1.8em;
+  margin:         15px 0px 0 0;
+  a {
+    color:        $gray;
+    &:hover {
+      color:      lighten($gray, 10); } } }
+
+.subpage-header {
+  @extend .page-header;
+  font-size:      1.2em;
+  line-height:    20px;
+  margin:         0px 0 10px;
+  padding:{
+    top:          0;
+    right:        10px;
+    bottom:       5px;
+    left:         10px; }
+  &.no-border,
+  &.no-border:after {
+   @extend %no-border; } }
+
+.inline-element {
+  display:        inline; }
+
+.placeholder {
+  color:          $light-gray !important; }
+
+.inline-link {
+  color:                $light-blue;
+  text-decoration:      underline;
+  &:hover {
+    color: darken($orange, 15); } }
+
+// Navigation
+// ------------------------------------------------------------------------
+.navbar {
+  $primary:       $dark-blue;
+  @extend %webkit-antialias;
+
+  &.navbar-default {
+    background-color: rgba(lighten($primary, 10), 0.95);
+    border:           none;
+    .navbar-nav > li {
+      border:{
+        right:        2px ridge lighten($primary, 20); }
+      &:last-of-type {
+        border:       none; }
+      & > a {
+        color:          $white;
+        text-shadow:    1px 1px 0 darken($primary, 20);
+        &:hover {
+          background-color: $primary;
+          color:            darken($bone, 10);
+          text-shadow:      1px 1px 0 darken($primary, 20); } } }
+
+    .navbar-nav > .active > a,
+    .navbar-default .navbar-nav > .active > a:hover,
+    .navbar-default .navbar-nav > .active > a:focus {
+      background-color: lighten($primary, 5);
+      color:            $white;  }
+
+    .navbar-brand {
+      color:            $white;
+      font:{
+        family:         "Gotham", $adminFontFamily;
+        size:           2.5em;
+        weight:         700; }
+      text-shadow:  0 0 5px darken($primary, 15);
+      &:hover{
+        color:          rgba($white, 0.8);}
+
+      span.small {
+        font:{
+          size:         .7em;
+          weight:       500; }
+        left:           -0.4em;
+        position:       relative; } } } }
+
+@media (max-width: 979px) {
+  .navbar .brand {
+    margin-top:     0;
+    font-size:      2em; } }
+
+.sub-nav{
+  &-container {
+    background-color:   rgba(darken($offwhite, 5), 0.8);
+    border-bottom:      1px solid darken($offwhite, 15);
+    position:       fixed;
+    margin:         50px 0 0 0;
+    padding:        5px 0;
+    width:          100%;
+    z-index:        1029; } // 1 less than nav
+  &-title {
+    @include float;
+    h1 {
+      color:        $light-blue;
+      font:{
+        size:       2.2em; }
+      line-height:  110%;
+      margin:       0; } }
+  &-list {
+    @include float(right);
+    color:          $light-blue;
+    font-size:      1.2em;
+    margin-bottom:  0;
+    li {
+      line-height:    120%;
+      vertical-align: middle;
+      &:nth-of-type(1) {
+        border-right: 1px solid $light-blue;
+        margin-right: 0;
+        padding-right:13px; }
+      &:nth-of-type(2) {
+        margin:       0;
+        padding-left: 10px; }
+        .btn {
+          font-size:  0.8em; } } }
+}
+
+// Structure Elements
+// ------------------------------------------------------------------------
+.wrapper {
+  @include prefix(box-shadow, 0 1px 2px rgba($black, 0.1), moz webkit o ms);
+  background: $offwhite 0 0 repeat url('/images/pattern_grain.png');
+  border:{
+    bottom:     1px solid $light-gray; }
+  min-height:   600px;
+  padding:      100px 0 0 0;
+}
+
+.footer {
+  color:          #999;
+  padding:        10px 0 60px;
+}
+
+.lead-fill-table-cell {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  height: 5em;
+  width: 16em; }
+
+.truncated {
+  display :     block;
+  overflow:     hidden;
+  text-overflow: ellipsis;
+  white-space:  nowrap;
+  width:        auto; }
+
+// Set the backgrounds
+// // -------------------------
+.btn {
+  @extend .btn-default; }
+
+// make words wrap...please!
+.break-word {
+  word-wrap:        break-word; }
+
+// Selectize.js adds a label above select fields.
+// This hides it unless it has content.
+// Need shower.
+.categoryField,
+.copyPointField {
+  label:empty {
+  display: none; } }
+
+.call-que-container {
+  @include prefix(box-shadow, -1px 1px 2px rgba($black, 0.15), moz webkit o ms);
+  @include prefix(border-radius, 0 3px 3px 3px, moz webkit o ms);
+  background: rgba($white, 0.8);
+  border:{
+    left: none; }
+  margin-bottom: 2em;
+  min-height: 200px;
+  &.bordered-left {
+    border:{
+      left: 1em solid rgba($medium-blue, 1);
+    } }
+}
+
+.callList {
+  @include prefix(transition, all 0.5s, moz webkit o ms);
+  padding:            10px 0;
+  &-tablebody tr:hover {
+    background-color:rgba($light-blue, 0.05);
+    cursor:           pointer; }
+  &-tablehead th {
+    background-color: $light-gray;
+    color:            $light-blue; } }
+
+.callModule {
+  &-container {
+    @include prefix(box-shadow, 0 1px 1px rgba($black, 0.05), moz webkit o ms );
+    @include prefix(border-radius, 3px, moz webkit o ms);
+    background-color: $white;
+    border:           1px solid $light-gray;
+    margin-bottom:    10px;
+    padding:          10px; }
+    button.dismiss-call {
+      @include float(right);
+      margin-bottom: 5px;
+      right:15px;
+      top: 10px;
+    } }
+
+.blur-text {
+  $blur: 3;
+  @include prefix(box-shadow, 0 0 3px rgba($gray, 0.3) inset, moz webkit o ms);
+  @include prefix(border-radius, 3px, moz webkit o ms);
+  @include prefix(transition, all 0.5s, moz webkit o ms);
+  background-color: rgba($white, 0.3);
+  border:           1px solid rgba($gray, 0.3)    ;
+  color:            transparent;
+  cursor:           default;
+  opacity:          0.5;
+  text-shadow:      0 0 #{$blur}px rgba($gray, 0.5);
+  th,
+  .page-header {
+    color:          transparent;
+    text-shadow:    0 0 #{$blur}px rgba($light-blue, 0.5); }
+  .callList-tablebody tr:hover {
+    background-color:transparent;
+    cursor:         default;  }
+  .table-bordered > thead > tr > th,
+  .table-bordered > thead > tr > td,
+  .table-bordered > tbody > tr > th,
+  .table-bordered > tbody > tr > td  {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word; } }
+
+.prevent-clicks {
+  pointer-events: none;
+}
+
+.callScript {
+  transition:       all 0.35s ease;
+  &-list {
+    li {
+      padding:    0 0 0 5px;
+      &:first-of-type {
+        color:    $light-blue;
+        padding:  0;
+        font:{
+          size:   1.2em ; } } } } }
+
+.warm-transfer{
+  &-links {
+    &:hover {
+      cursor: pointer;
+      .btn {
+        background-color:#5cb85c;
+        border-color: #4cae4c;  } }
+    .btn {
+      padding:  5px 10px;
+      &:hover {
+        background-color:#5cb85c; } }
+    &-content {
+      line-height: 33px; } } }
+
+.leadGroup-enter {
+  opacity: 0.01;
+  transition: all 5s ease; }
+
+.leadGroup-enter.leadGroup-enter-active {
+  opacity: 1; }
+
+// Devise error handling
+#error_explanation {
+  h2 {
+    color: $alertred;
+    font-size: 1.5em; }
+  ul li {
+    color: $alertred;
+  }
+}
+
+.nav-pills > li > a {
+  @include prefix(border-radius, 3px 0 0 3px, moz webkit o ms);
+  @include prefix(transition, all 500ms, moz webkit o ms);
+  background-color: rgba(231, 231, 231, 0.05);
+  border:{
+    top: 1px solid rgba(119, 119, 119, 0.09);
+    right: none;
+    bottom: 1px solid rgba(119, 119, 119, 0.09);
+    left: 1px solid rgba(119, 119, 119, 0.09); }
+}
+
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  @include prefix(border-radius, 3px 0 0 3px, moz webkit o ms);
+  background-color: rgba($medium-blue, 1);
+  color:  $white;
+  cursor: default;
+  position: relative;
+  z-index: 2;
+  .badge {
+    background-color: darken($medium-blue, 25);
+  }
+}
+.nav > li.disabled > a,
+.nav > li.disabled > a:hover,
+.nav > li.disabled > a:focus {
+  @include prefix(transition, all 500ms, moz webkit o ms);
+  background-color:transparent;
+  color: rgba(#777777, .5);
+  .badge {
+    background-color: rgba(#777777, 0.5);
+  }
+}
+
+.panel-collapse.collapse.in {
+  height: auto !important;
+}
+
+// Silent Killaz
+// ------------------------------------------------------------------------
+%webkit-antialias {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+%no-rounding {
+  @include prefix(border-radius,0, moz webkit o ms); }
+
+%no-shadow {
+  @include prefix(box-shadow, 0, moz webkit o ms); }
+
+%no-border {
+  border:       none; }
+
+%inline-block {
+  display:      inline-block; }
+
+%subheading {
+  $primary:             $bone !default;
+  color:                $white;
+  font:{
+    size:               1em; }
+  line-height:          15px;
+  height:               15px;
+  margin:               0;
+  @extend %webkit-antialias; }

@@ -1,0 +1,92 @@
+$table-primary-color: #FCFCFC;
+$table-header-color: $medium-blue;
+$table-column-height: 60; //px
+$table-column-width: .11; // %
+$table-column-min: 7;
+$table-column-max: 11;
+
+@mixin ghost_cell($height:40, $align: middle){
+  display: table;
+  height: #{$height}px;
+  vertical-align: $align;
+  width: 100%;
+  span {
+    display: table-cell;
+    vertical-align: $align;
+  }
+}
+
+@mixin table_col_width($number-of-columns: 10) {
+  $col-widths: (1/$number-of-columns);
+  $col-gutter: $col-widths/25;
+  padding:{
+    top: 0;
+    right:  percentage($col-gutter);
+    bottom: 0;
+    left: percentage($col-gutter); }
+  width: percentage($col-widths);
+  &:first-child {
+    padding-left: percentage($col-gutter*2); }
+  &:last-child {
+    padding-right: percentage($col-gutter*2); }
+}
+
+@mixin table-column-maker($min-cols: 1, $max-cols:12) {
+  @for $i from $min-cols through $max-cols {
+    .table-col-#{$i} {
+      display: inline-block;
+      height: #{$table-column-height}px;
+      line-height: 100%;
+      @include table_col_width($i); } }
+}
+
+div.table {
+  overflow: hidden;
+}
+
+.table-header {
+  background-color: rgba($table-header-color, 1);
+  box-shadow: 0 3px 1px rgba(darken($table-primary-color, 55), .35);
+  color: $white;
+  position: relative;
+  z-index: 2;
+}
+
+.table-row {
+  $speed: all 400ms;
+  $shadow: 0 0 3px 0px rgba(darken($table-primary-color, 55), .35);
+
+  @include prefix(transition, $speed, moz webkit o ms);
+  background-color: $table-primary-color;
+  border:{
+    bottom: 1px solid darken($table-primary-color, 10);
+    top: 1px solid transparent; }
+  height: #{$table-column-height}px;
+
+  &:nth-child(odd) {
+    @include prefix(transition, $speed, moz webkit o ms);
+    background-color: darken($table-primary-color, 5); }
+
+  &:hover {
+    @include prefix(transition, $speed, moz webkit o ms);
+    @include prefix(box-shadow, $shadow, moz webkit o ms);
+    background-color: lighten($table-primary-color, 5);
+    border-color: $medium-blue;
+    cursor: pointer;
+    position: relative; }
+  &.danger {
+    *[class*='table-col-'] {
+      background-color: #f2dede !important; } }
+  &.success {
+    *[class*='table-col-'] {
+      background-color: #dff0d8 !important; } }
+}
+
+@include table-column-maker($table-column-min, $table-column-max);
+
+.ghost-cell {
+  @include ghost_cell($table-column-height);
+  p {
+    white-space: normal;
+  }
+}

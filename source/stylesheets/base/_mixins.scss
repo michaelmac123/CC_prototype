@@ -1,0 +1,344 @@
+//Only use me on special fonts, I am not a catchall fix for everything
+@mixin smooth-font( $style:subpixel-rendering ) {
+  -webkit-font-smoothing: $style;
+  -moz-osx-font-smoothing: grayscale; }
+
+@mixin box-sizing($box: border-box){
+     -webkit-box-sizing: $box;
+     -moz-box-sizing:    $box;
+     box-sizing:         $box; }
+
+/// Mixin helper to output vendor prefixes
+/// @access public
+/// @author HugoGiraudel
+/// @param {String} $property - Unprefixed CSS property
+/// @param {*} $value - Raw CSS value
+/// @param {List} $prefixes - List of prefixes to output
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value; }
+  #{$property}: $value;
+}
+
+// Button overrides
+@mixin btn-mixin($primary: $lightgray) {
+  @include prefix(box-shadow, 0 0 10px rgba(darken($primary, 10), .5) inset, moz webkit o ms);
+  @include prefix(border-radius, 2px, moz webkit o ms);
+  background:   $primary;
+  border:       none;
+  color:        $white;
+  &:hover {
+    background: lighten($primary, 8);
+    color:      $white; } }
+
+.btn {
+  &.btn-red-orange {
+    $primary:     $red-orange;
+    @include btn-mixin($primary);
+    }
+
+  &.btn-light-blue {
+    $primary:     $light-blue;
+    @include btn-mixin($primary); }
+
+  &.btn-dark-blue {
+    $primary:     $dark-blue;
+    @include btn-mixin($primary); }
+}
+
+//Allows for 2 color stops
+@mixin gradient($colorStop1: #fff, $colorStop2: #fff, $g1: .1, $g2: .3, $orientation: hort){
+  @if $orientation == hort {
+    background-color:$colorStop1;
+    background-image:-webkit-gradient(linear, left top, left bottom, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2));
+    $g1p:percentage($g1);
+    $g2p:percentage($g2);
+    background-image:-webkit-linear-gradient(left top, left bottom, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2));
+    background-image:-moz-linear-gradient(top, $colorStop1 $g1p, $colorStop2 $g2p);
+    background-image:-ms-linear-gradient(top right, $colorStop1 $g1p, $colorStop2 $g2p);
+    }
+  @else if $orientation == vert {
+    background-color:$colorStop1;
+    background-image:-webkit-gradient(linear, left top, right top, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2));
+    $g1p:percentage($g1);
+    $g2p:percentage($g2);
+    background-image:-webkit-linear-gradient(left top, right top, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2));
+    background-image:-moz-linear-gradient(left, $colorStop1 $g1p, $colorStop2 $g2p);
+    background-image:-ms-linear-gradient(left, $colorStop1 $g1p, $colorStop2 $g2p);
+  }
+  @else if $orientation == vertcenter {
+    background-color:$colorStop1;
+    $g3:(1- $g1);
+    background-image:-webkit-gradient(linear, left top, right top, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2), color-stop($g3, $colorStop1));
+    $g1p:percentage($g1);
+    $g2p:percentage($g2);
+    $g3p:percentage($g3);
+    background-image:-webkit-linear-gradient(left top, right top, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2), color-stop($g3, $colorStop1));
+    background-image:-moz-linear-gradient(left center, $colorStop1 $g1p, $colorStop2 $g2p, $colorStop1 $g3p);
+    background-image:-ms-linear-gradient(left center, $colorStop1 $g1p, $colorStop2 $g2p, $colorStop1 $g3p);
+  }
+  @else if $orientation == diagleft {
+    background-color:$colorStop1;
+    $g3:(1- $g1);
+    background-image:-webkit-gradient(linear, left top, right bottom, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2), color-stop($g3, $colorStop1));
+    $g1p:percentage($g1);
+    $g2p:percentage($g2);
+    $g3p:percentage($g3);
+    background-image:-webkit-linear-gradient(-45deg, color-stop($g1, $colorStop1), color-stop($g2, $colorStop2), color-stop($g3, $colorStop1));
+    background-image:-moz-linear-gradient(-45deg, $colorStop1 $g1p, $colorStop2 $g2p, $colorStop1 $g3p);
+    background-image:-ms-linear-gradient(-45deg, $colorStop1 $g1p, $colorStop2 $g2p, $colorStop1 $g3p);
+  }
+ }
+
+
+// Row Maker grid style
+@mixin rowMaker($numPerRow, $margin) {
+  box-sizing:       border-box;
+  width:            ((100% - (($numPerRow - 1) * $margin)) / $numPerRow);
+  &:nth-child(n) {
+    margin-bottom:  $margin;
+    margin-right:   $margin; }
+  &:nth-child(#{$numPerRow}n) {
+    margin-right:     0;
+    margin-bottom:    0; } }
+
+
+// Border Lines
+@mixin border( $coordinates: 0 0 0 0, $color: $white-gray, $style: solid ) {
+  margin: 0 auto;
+  $top: nth($coordinates, 1);
+  $right: nth($coordinates, 2);
+  $bottom: nth($coordinates, 3);
+  $left: nth($coordinates, 4);
+
+  @if not(unitless($top)) {
+    border-top: $top $style $color;
+  }
+  @if not(unitless($right)) {
+    border-right: $right $style $color;
+  }
+  @if not(unitless($bottom)) {
+    border-bottom: $bottom $style $color;
+  }
+  @if not(unitless($left)) {
+    border-left: $left $style $color;
+  } }
+//default width
+$border: 3px;
+*[class*="tbborder"] {
+  @include border($border 0 $border 0); }
+
+*[class*="lrborder"] {
+  @include border(0 $border 0 $border); }
+
+*[class*="top-border"] {
+  @include border($border 0 0 0); }
+
+*[class*="bottom-border"] {
+  @include border(0 0 $border 0); }
+
+*[class*="left-border"] {
+  @include border(0 0 0 $border); }
+
+*[class*="right-border"] {
+  @include border(0 $border 0 0); }
+
+//fix inline-block
+$legacy-support-for-ie: true !default;
+@mixin inline-block {
+  @if $legacy-support-for-ie {
+    & { *display: inline; }
+  }
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block !important;
+  vertical-align: middle;
+  @if $legacy-support-for-ie {
+    *vertical-align: auto; } }
+
+//Mixin for Floats
+@mixin float($float: left, $position: relative){
+  float:$float;
+  position:$position; }
+
+// For clearing floats properly
+@mixin clearfix{
+  *zoom: 1;
+  &:before, &:after{
+    content: "";
+    display: table; }
+  &:after{
+    clear:both; } }
+// create clearfix class
+.clearfix {
+  @include clearfix; }
+
+// Style Placeholders
+@mixin placeholder {
+  &:-moz-placeholder { @content }
+  &::-webkit-input-placeholder { @content }
+  &:-ms-input-placeholder { @content }
+}
+
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin background-clip($content) {
+  -moz-background-clip   : $content;
+  -webkit-background-clip: $content;
+  background-clip        : $content;
+}
+
+// This parent can be any width and height */
+.vert-ghost {
+  // The ghost, nudged to maintain perfect centering */
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  // The element to be centered, can also be of any width and height */
+  .vert-text {
+    display: inline-block;
+    vertical-align: middle; } } }
+
+// Mixin to create a min-height class
+@mixin min-height($heights) {
+  @each $ht in $heights {
+    &.min-height#{$ht} { @include height-calc($ht) } }
+}
+@mixin height-calc($heights) { min-height: #{$heights}px; }
+// Create a min-height class loop.
+// Default set for 250,450, 500
+// Can be changed @include min-height(30, 123, 456, ...)
+*[class*="min-height"] {
+  display:block;
+  @include min-height($heights:( 1, 100, 135, 150, 250, 450, 500 ) ); }
+
+// Make some inline line height adjustment in %
+@mixin lineheight($sizes: (10 20 30 40 50 60 70 80 90 100) ) {
+  @each $sz in $sizes {
+    &.line-height#{$sz} {
+      line-height:  #{percentage($sz/100)}; } } }
+
+*[class*="line-height"] {
+  @include lineheight;
+}
+
+// Make some fixed widths in ems
+@mixin widthmaker($sizes: (1 2 3 4 5 6 7 8 9 10) ) {
+  @each $sz in $sizes {
+    &.fixed-#{$sz} {
+      width:  #{$sz}em; } } }
+
+*[class*="fixed-wd-"] {
+  @include widthmaker;
+  @include float;
+  margin:   0;
+  min-height:1px; //prevents collapse
+  padding:  0; }
+
+// resize fonts norm-plus & normal-plus is because michael cannot remember anything at his advanced age.
+@mixin resize-fonts( $sizes: (.8 small) (.9 normal-minus) (1 normal) (1.25 norm-plus) (1.25 normal-plus) (1.5 medium) (1.7 med-plus) (2 large) (2.5 xlarge) (3 jumbo), $sledgehammer: true ){
+  @each $sz in $sizes {
+    $size:  nth($sz, 1);
+    $name:  nth($sz, 2);
+    @if sledgehammer {
+    &.text-size-#{$name} {
+      font-size: #{$size}em !important;
+      line-height:100%; }
+    }@else {
+      &.text-size-#{$name} {
+      font-size: #{$size}em !important;
+      line-height:100%; } } } }
+
+*[class*="text-size"] {
+  @include resize-fonts; }
+
+// just for Michael!
+@mixin gapmaker($sizes: (5 10 15 25), $sides: (top bottom), $type: "margin", $class: "" ) {
+  @if $type == nil {
+    @each $sz in $sizes {
+      @each $sd in $sides {
+      &.move-#{$sides}#{$sz} {
+        #{$sd}: #{$sz}px; } } }
+  }@else {
+    @each $sz in $sizes {
+      @each $sd in $sides {
+      &.#{$type}-#{$class}gap#{$sz} {
+        #{$type}:{
+          #{$sd}: #{$sz}px; } } } } }
+}
+
+$margin-vars: ( 0 3 5 10 15 20 25 30 35 40 45 50);
+*[class*="margin-gap"] {
+  @include gapmaker( $sizes:( $margin-vars ), $sides: (top bottom) ); }
+
+*[class*="margin-topgap"] {
+  @include gapmaker( $sizes:( $margin-vars ), $sides: (top), $class: top, $type: margin ); }
+
+*[class*="margin-bottomgap"] {
+  @include gapmaker( $sizes:( $margin-vars ), $sides: (bottom), $class: bottom, $type: margin ); }
+
+*[class*="margin-sidegap"] {
+  @include gapmaker( $sizes:( $margin-vars ), $sides: (right left), $class: (side) ); }
+
+
+$padding-vars:( 0 5 10 15 20 25 30 35 40 45 50 );
+*[class*="padding-gap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (top right bottom left), $type: padding );
+  @include clearfix; }
+
+*[class*="padding-sidegap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (right left), $class: side, $type: padding );
+  @include clearfix; }
+
+*[class*="padding-topgap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (top), $class: top, $type: padding );
+  @include clearfix; }
+
+*[class*="padding-bottomgap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (bottom), $class: bottom, $type: padding );
+  @include clearfix; }
+
+*[class*="padding-leftgap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (left), $class: left, $type: padding );
+  @include clearfix; }
+
+*[class*="padding-rightgap"] {
+  @include gapmaker( $sizes:( $padding-vars ), $sides: (right), $class: right, $type: padding );
+  @include clearfix; }
+
+$move-vars: ( -40 -35 -30 -25 -20 -15 -10 -5 0 5 10 12 15 20 25 30 35 40 45 );
+*[class*="move-left"] {
+  @include gapmaker( $sizes:($move-vars), $sides: (left), $class: side, $type: nil );
+  position:relative; }
+
+*[class*="move-right"] {
+  @include gapmaker( $sizes:($move-vars), $sides: (right), $class: side, $type: nil );
+  position:relative; }
+
+*[class*="move-top"] {
+  @include gapmaker( $sizes:($move-vars), $sides: (top), $class: side, $type: nil );
+  position:relative; }
+
+*[class*="move-bottom"] {
+  @include gapmaker( $sizes:($move-vars), $sides: (bottom), $class: side, $type: nil );
+  position:relative;  }
+
+// Resize  modal widths.
+// Default width is 560px
+@mixin modal-width($widths: (360 sm) (660 med) (760 lg) (860 xlg) (960 xxlg) ) {
+  @each $wd in $widths {
+    $width:   nth($wd, 1);
+    $name:    nth($wd, 2);
+    &.modal-#{$name} {
+      width: #{$width}px;
+      margin-left:-#{$width/2}px; } } }
+// increase modal widths
+*[class*="modal-"] {
+  @include modal-width(); }

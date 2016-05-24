@@ -1,0 +1,38 @@
+%h2.page-header
+  %span Connected with Caller
+  %small
+  %small.pull-right.text-right
+    %span Calls Answered Today: 1
+    %br
+    %span Calls Answered This Week: 3
+
+.callModule.col-md-8.col-md-push-2
+  .row.margin-gap10
+    .margin-gap10.padding-bottomgap10
+      .form-group
+        %label.control-label
+          %span Why? *
+
+        %select{ type: "select", label: "Why? *", required: "", class: "form-control" }
+          %option{ type: "option", value: "" }Choose a reason to remove...
+          %option{ type: "option", value: "6"} Already Found Someone
+          %option{ type: "option", value: "5"} Disconnected Number
+          %option{ type: "option", value: "4"} Employment Inquiry
+          %option{ type: "option", value: "1"} Left Voicemail
+          %option{ type: "option", value: "7"} Never Requested Service
+          %option{ type: "option", value: "8"} No Answer
+          %option{ type: "option", value: "2"} Pro-Bono
+          %option{ type: "option", value: "3"} Solicitor
+
+        .form-group
+          %label.control-label
+            %span Comments
+
+          %textarea{ type:"textarea", label: "Comments", class: "form-control"}
+
+        %button.pull-left.btn.btn-default{ type: "button", ng:{ click:"tab.selectTab(1)"} }
+          %i.fa.fa-times.fa-lg
+          Cancel
+        %button.pull-right.btn.btn-primary{ type: "button", ng:{ click:"tab.selectTab(1)"}  }
+          %i.fa.fa-times.fa-lg
+          Remove

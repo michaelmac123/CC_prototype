@@ -1,0 +1,123 @@
+// Color Sets
+//Gray Scale Colors
+$black:           #000000;
+$lightblack:      lighten($black, 5%);
+$dark-gray:       #575757;
+$gray333:         lighten($black, 20%);
+$charcoal:        lighten($black, 25%);
+$gray30:          lighten($black, 30%);
+$gray666:         lighten($black, 40%);
+$gray:            lighten($black, 50%);
+$mediumgray:      #8D9197;
+$light-gray:      #C6C8CB;
+$white-gray:      #ECECED;
+$gray85:          lighten($black, 85%);
+$offwhite:        #f6f6f6;
+$bone:            lighten($black, 96%);
+$cream:           #F7F6EF;
+$ltwhite:         #F1F1F1;
+$white:           #FFFFFF;
+
+// Accent Colors
+$red:             #F00000;
+$alertred:        #990000;
+
+$lightgreen:      #6AA001;
+$alertgreen:      #6AA001;
+$lime:            #6ea31f;
+
+$lemon:           #ecff45;
+$yellow:          $lemon;
+
+$orange:          #F97129;
+$red-orange:      #B73E18;
+
+$dark-blue:       #213642;
+$medium-blue:     #5e9bf7;
+$light-blue:      #41738B;
+$mmblue:          #44728e;
+$gunmetal:        #5d6675;
+$gray-blue-lt :   #e7e9ec;
+
+//elocal retro
+$retroblue:       #2b3542;
+$red-orange:     #f57c32;
+$retrogreen:      #93a31c;
+$retrowhite:       #f8ecc2;
+$crazy-gray:      #888F94;
+
+//Base
+$bodyBackground:  $white;
+$textColor:       $charcoal;
+$btnPrimaryBackground: #006DBE; // not sure why this is overwritten.
+
+//Links
+$linkColor:       $textColor;
+$linkColorHover:  $red-orange;
+
+//Typography
+// Font for Get Quote Widgets
+@import url(https://fonts.googleapis.com/css?family=Rokkitt:400,700);
+
+$sansFontFamily:    "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serifFontFamily:   "Georgia", "Times New Roman", Times, serif;
+$monoFontFamily:    Menlo, Monaco, Consolas, "Courier New", monospace;
+$adminFontFamily:   Arial, sans-serif;
+$MuseoSans:         "museo_sans_500regular", $sansFontFamily;
+$MuseoSansBold:     "museo_sans_700regular", "museo_sans_500regular", $sansFontFamily;
+$Gotham:            "Gotham", $sansFontFamily;
+$Rokkitt:           "Rokkitt", "Times New Roman", Times, serif;
+
+$header-class:      $Rokkitt;
+$dress-class:       $MuseoSans;
+$working-class:     $sansFontFamily;
+
+.header-class   {   font-family:$header-class;  }
+.dress-class    {   font-family:$dress-class;   }
+.working-class  {   font-family:$working-class; }
+
+
+$headingFontFamily: $sansFontFamily;
+$headingFontColor:  $charcoal;
+
+$baseFontSize:      14px;
+$baseFontFamily:    $sansFontFamily;
+$baseLineHeight:    18px;
+
+// GRID
+// Default 940px grid
+$gridColumns:             12;
+$gridColumnWidth:         60px;
+$gridGutterWidth:         5px;
+$gridRowWidth:            ($gridColumns * $gridColumnWidth) + ($gridGutterWidth * ($gridColumns - 1));
+
+$fluidGridColumnWidth:    percentage($gridColumnWidth/$gridRowWidth);
+$fluidGridGutterWidth:    percentage($gridGutterWidth/$gridRowWidth);
+
+// Allow variable colors to be classes
+// both as color and as background-color
+@mixin color_guide($theme) {
+  color:  $theme;
+  fill:   $theme;
+  &-bg {
+    background-color: $theme; } }
+
+.red          { @include color_guide($alertred); }
+
+.dark-blue    { @include color_guide($dark-blue); }
+.light-blue   { @include color_guide($light-blue); }
+.gunmetal     { @include color_guide($gunmetal); }
+
+.orange       { @include color_guide($red-orange); }
+.red-orange   { @include color_guide($red-orange); }
+
+.lightgreen   { @include color_guide($lightgreen); }
+
+.black        { @include color_guide($charcoal); }
+.dark-gray    { @include color_guide($dark-gray); }
+.gray         { @include color_guide($gray);}
+.light-gray   { @include color_guide($light-gray); }
+
+.white-gray   { @include color_guide($white-gray); }
+.white        { @include color_guide($white); }
+.offwhite     { @include color_guide($offwhite); }

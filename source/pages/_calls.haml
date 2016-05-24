@@ -1,0 +1,154 @@
+%h2.page-header
+  %span Current Call Queue
+  %small(Click any entry to connect to your phone)
+  %small.pull-right.text-right
+    %span Calls Answered Today: 0
+    %br
+    %span Calls Answered This Week: 2
+
+.callList.col-md-12
+  .table.table-bordered.lead-fill-table
+    .table-header.callList-tablehead
+      .table-col-7><
+        .ghost-cell
+          %span Caller Name
+      .table-col-7><
+        .ghost-cell
+          %span Caller From #
+      .table-col-7><
+        .ghost-cell
+          %span Received At
+      .table-col-7><
+        .ghost-cell
+          %span Zip Code
+      .table-col-7><
+        .ghost-cell
+          %span Time Zone
+      .table-col-7><
+        .ghost-cell
+          %span Campaign Name
+      .table-col-7><
+        .ghost-cell
+          %span Seconds Remaining
+
+    .callList-tablebody.table-body
+      .table-row.call.success
+        .table-col-7.caller_name><
+          .ghost-cell
+            %span John Doe
+        .table-col-7.from><
+          .ghost-cell
+            %span (234) 876-3458
+        .table-col-7.recieved_at><
+          .ghost-cell
+            %span Mon 07:24:55 AM
+        .table-col-7.zip_code><
+          .ghost-cell
+            %span 12345
+        .table-col-7.time_zone><
+          .ghost-cell
+            %span
+        .table-col-7.ivr_campaign_name><
+          .ghost-cell
+            %span Test Campaign
+        .table-col-7.seconds_remaining><
+          .ghost-cell
+            %span
+              %div
+                %span Accepted
+      .table-row.call{ ng:{ click:"tab.selectTab(6)"} }
+        .table-col-7.caller_name><
+          .ghost-cell
+            %span John Doe
+        .table-col-7.from><
+          .ghost-cell
+            %span (234) 876-3458
+        .table-col-7.recieved_at><
+          .ghost-cell
+            %span Mon 07:27:30 AM
+        .table-col-7.zip_code><
+          .ghost-cell
+            %span 12345
+        .table-col-7.time_zone><
+          .ghost-cell
+            %span
+        .table-col-7.ivr_campaign_name><
+          .ghost-cell
+            %span Test Campaign
+        .table-col-7.seconds_remaining><
+          .ghost-cell
+            %span
+              %div
+                %span 28
+      .table-row.call
+        .table-col-7.caller_name><
+          .ghost-cell
+            %span John Doe
+        .table-col-7.from><
+          .ghost-cell
+            %span (234) 876-3458
+        .table-col-7.recieved_at><
+          .ghost-cell
+            %span Mon 07:31:34 AM
+        .table-col-7.zip_code><
+          .ghost-cell
+            %span 12345
+        .table-col-7.time_zone><
+          .ghost-cell
+            %span
+        .table-col-7.ivr_campaign_name><
+          .ghost-cell
+            %span Test Campaign
+        .table-col-7.seconds_remaining><
+          .ghost-cell
+            %span
+              %div
+                %span 29
+      .table-row.call.danger
+        .table-col-7.caller_name><
+          .ghost-cell
+            %span John Doe
+        .table-col-7.from><
+          .ghost-cell
+            %span (234) 876-3458
+        .table-col-7.recieved_at><
+          .ghost-cell
+            %span Mon 07:32:45 AM
+        .table-col-7.zip_code><
+          .ghost-cell
+            %span 12345
+        .table-col-7.time_zone><
+          .ghost-cell
+            %span
+        .table-col-7.ivr_campaign_name><
+          .ghost-cell
+            %span Test Campaign
+        .table-col-7.seconds_remaining><
+          .ghost-cell
+            %span
+              %div
+                %span 8
+      .table-row.call
+        .table-col-7.caller_name><
+          .ghost-cell
+            %span John Doe
+        .table-col-7.from><
+          .ghost-cell
+            %span (234) 876-3458
+        .table-col-7.recieved_at><
+          .ghost-cell
+            %span Mon 07:33:55 AM
+        .table-col-7.zip_code><
+          .ghost-cell
+            %span 12345
+        .table-col-7.time_zone><
+          .ghost-cell
+            %span
+        .table-col-7.ivr_campaign_name><
+          .ghost-cell
+            %span Test Campaign
+        .table-col-7.seconds_remaining><
+          .ghost-cell
+            %span
+              %div
+                %span 11

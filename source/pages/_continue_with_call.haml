@@ -1,0 +1,222 @@
+.callModule.col-md-8.col-md-push-2
+  .row.margin-gap10
+    .col-xs-9
+      .termination_timer
+    %button.dismiss-call.btn.btn-sm.btn-danger{ type: "button", ng:{ click:"tab.selectTab(5)"}}
+      %i.fa.fa-times.fa-lg= " Dismiss Call"
+  .row
+
+    .panel-group#accordion_group
+      -# Category Location Panel
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{ href: "#category_location", data:{ toggle: "collapse", parent: "#accordion_group" },  aria:{expanded: "true", controls: "category_location"  }} Category and Location
+        #category_location.panel-collapse.collapse.in{ role: "tabpanel" }
+          .panel-body
+            .categoryCopyPoint
+              .alert-warning.margin-gap5.alert.alert-info
+                %h5.margin-topgap0 Ask Question
+                %p.padding-sidegap5.italic><
+                  Hi, you have reached 24/7 Legal, can you please tell me what type of lawyer you are looking for?
+              %form.category-copy-point-form.form-group
+                .categoryField.row
+                  .col-md-7
+                    %label
+                    %select#select-categories.form-control
+                      %option{ value: "8040"} Admiralty & Maritime Lawyers
+                      %option{ value: "8002"} Adoption Lawyers
+                      %option{ value: "8039"} Arbitration & Mediation Lawyers
+                      %option{ value: "8003"} Bankruptcy Lawyers
+                      %option{ value: "8004"} Business Lawyers
+                      %option{ value: "8031"} Car Accident Lawyers
+                      %option{ value: "8005"} Civil Rights Lawyers
+                      %option{ value: "8042"} Class Action Law
+                      %option{ value: "8009"} Collections Lawyers
+                      %option{ value: "8007"} Consumer Lawyers
+                      %option{ value: "8021"} Copyright, Trademark & Patent Lawyers
+                      %option{ value: "8008"} Criminal Lawyers
+                      %option{ value: "8011"} Divorce Lawyers
+                      %option{ value: "8012"} DUI Lawyers
+                      %option{ value: "8013"} Education Law Lawyers
+                      %option{ value: "8014"} Elder Law Lawyers
+                      %option{ value: "8015"} Employment Lawyers
+                      %option{ value: "8016"} Entertainment Lawyers
+                      %option{ value: "8034"} Environmental Lawyers
+                      %option{ value: "8032"} Family Lawyers
+                      %option{ value: "8033"} Foreclosure Lawyers
+                      %option{ value: "8018"} Immigration Lawyers
+                      %option{ value: "8019"} Insurance Lawyers
+                      %option{ value: "8006"} Internet Lawyers
+                      %option{ value: "8020"} Malpractice Lawyers
+                      %option{ value: "8035"} Medical Malpractice Lawyers
+                      %option{ value: "8030"} Mesothelioma Lawyers
+                      %option{ value: "8036"} Military Law Lawyers
+                      %option.selected{ value: "8001"} Personal Injury Lawyers
+                      %option{ value: "8037"} Probate Lawyers
+                      %option{ value: "8010"} Product Liability Lawyers
+                      %option{ value: "8022"} Real Estate Lawyers
+                      %option{ value: "8023"} Securities Lawyers
+                      %option{ value: "8024"} Sexual Harassment Lawyers
+                      %option{ value: "8025"} Social Security Disability
+                      %option{ value: "8026"} Tax Lawyers
+                      %option{ value: "8027"} Traffic Lawyers
+                      %option{ value: "8028"} Wills & Estate Planning Lawyers
+                      %option{ value: "8029"} Workers Compensation Lawyers
+                      %option{ value: "8038"} Wrongful Death Lawyers
+
+                .form-container
+                  .copyPointField.row.margin-topgap5
+                    .col-md-7
+                      %label
+                      %select#select-copy-points.form-control
+                        %option.active{ value: "8276"} Automobile Accident
+                        %option{ value: "8277"} Bus & Train Accident
+                        %option{ value: "8278"} Child Injury
+                        %option{ value: "8279"} Construction Site Accident
+                        %option{ value: "8281"} Dog Bite
+                        %option{ value: "8283"} Fire, Burn & Explosion
+                        %option{ value: "14282"} General Injury
+                        %option{ value: "8284"} Head & Spinal Injury
+                        %option{ value: "8286"} Machinery Injury
+                        %option{ value: "8287"} Maritime Accident
+                        %option{ value: "8290"} Nursing Home Neglect
+                        %option{ value: "8291"} Passenger or Pedestrian Injury
+                        %option{ value: "8068"} Personal Injury Defense
+                        %option{ value: "8294"} Slip and Fall Injury
+                        %option{ value: "8352"} Work Related Injury
+
+                .alert-warning.margin-gap5.alert.alert-info
+                  %h5.margin-topgap0 Ask Question
+                  %p.padding-sidegap5.italic May I please have the zip code where you need a lawyer?
+
+                .ZipCodeField.row
+                  .col-md-3
+                    .zipcode-submit
+                      %input.zip_code_field.form-control{ placeholder: "Zip Code", type: "text"}/
+
+                %button.category-copy-point-submit.margin-gap5.btn.btn-primary{ type: "submit", value: "Next", href: "#warm_transfer", data:{toggle: "collapse", parent: "#accordion_group"}, aria:{expanded:"false", controls:"warm_transfer" } }
+                  %span Next Step
+                  %i.fa.fa-caret-right.fa-lg.margin-leftgap5
+
+
+                .alert-info.margin-gap5.alert.alert-info
+                  %h5.margin-topgap0 Note to Rep:
+                  %p.padding-sidegap5.italic><
+                    Warm Transfer instructions or a Lead Form will be displayed below in order of preferred action. A Lead Form may be used if a caller does not want a Warm Transfer or vice versa
+
+                %button.category-copy-point-submit.margin-gap5.btn.btn-primary{ type: "submit", value: "Fill Out Lead Form", href: "#lead_form", data:{toggle: "collapse", parent: "#accordion_group"}, aria:{expanded:"false", controls:"lead_form" } }
+                  %span Fill Out Lead Form
+                  %i.fa.fa-pencil.fa-lg.margin-leftgap5
+
+      -# Warm Transfer Panel
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{ href: "#" } Warm Transfer
+
+        #warm_transfer.panel-collapse.collapse{ role: "tabpanel" }
+          .panel-body
+            .alert-info.margin-bottomgap5.alert.alert-info
+              %h5.margin-topgap0 Inform Caller
+              %p.padding-sidegap5.italic><
+                Would you like to receive a text message with the phone numbers of additional lawyers?
+            .form-group
+              .checkbox
+                %label
+                  %input{ label: "Send additional numbers by text", type: "checkbox"}
+                  %span Send additional numbers by text
+            .alert-info.margin-bottomgap5.alert.alert-info
+              %h5.margin-topgap0 Inform Caller
+              %p.padding-sidegap5.italic><
+                Please hold while I connect you to a lawyer.  If you have any problems, please call us back at 1-877-959-2970
+            %h5 Click any business name to transfer caller
+
+            .list-group
+
+              %a.warm-transfer-links.list-group-item{ ng:{ click:"tab.selectTab(1)"} }
+                .row
+                  .col-md-2
+                    %button.btn.btn-success.move-right5
+                      %i.fa.fa-phone.fa-lg
+                  .col-md-7
+                    %span.warm-transfer-links-content Buckley and Associates
+                  .profile-phone-number.col-md-3
+                    %span.warm-transfer-links-content 2067353544
+
+              %a.warm-transfer-links.list-group-item{ ng:{ click:"tab.selectTab(1)"} }
+                .row
+                  .col-md-2
+                    %button.btn.btn-success.move-right5
+                      %i.fa.fa-phone.fa-lg
+                  .col-md-7
+                    %span.warm-transfer-links-content Dean Standish Perkins & Associates
+                  .profile-phone-number.col-md-3
+                    %span.warm-transfer-links-content 2062587591
+
+              %a.warm-transfer-links.list-group-item{ ng:{ click:"tab.selectTab(1)"} }
+                .row
+                  .col-md-2
+                    %button.btn.btn-success.move-right5
+                      %i.fa.fa-phone.fa-lg
+                  .col-md-7
+                    %span.warm-transfer-links-content PI
+                  .profile-phone-number.col-md-3
+                    %span.warm-transfer-links-content 8888441913
+
+              %a.warm-transfer-links.list-group-item{ ng:{ click:"tab.selectTab(1)"} }
+                .row
+                  .col-md-2
+                    %button.btn.btn-success.move-right5
+                      %i.fa.fa-phone.fa-lg
+                  .col-md-7
+                    %span.warm-transfer-links-content TSE & Associates, P.S.
+                  .profile-phone-number.col-md-3
+                    %span.warm-transfer-links-content 4252121197
+
+      -# Lead Form Panel
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{ href: "#"} Lead Form
+        #lead_form.panel-collapse.collapse{ role: "tabpanel" }
+          .panel-body
+            .lead_form
+              %form
+                .form-group
+                  %label.control-label
+                    %span First & Last Name *
+                  %input.form-control{ label: "First & Last Name *", type: "text"}
+                .form-group
+                  %label.control-label
+                    %span Phone *
+                  %input.form-control{ label: "Phone *", type: "tel", value: "(202) 658-7505"}
+                .form-group
+                  %label.control-label
+                    %span Email
+                  %input.form-control{ label: "Email", type: "email"}
+                .form-group
+                  %label.control-label
+                    %span Description
+                  %textarea.form-control{ label: "Description", type: "textarea" }
+
+                .alert.alert-info.alert-warning.margin-gap5
+                  %h5.margin-topgap0 Ask Question
+                  %p.padding-sidegap5.italic><
+                    For your protection under the Telephone Consumer Protection Act, do you agree that the phone number you provided me may be used to contact you using modern communication, such as a live agent, autodialer, pre-recorded or artificial voice calls and/or SMS text messages? Please, answer yes or okay if we have your consent.
+                .form-group
+                  .checkbox
+                    %label
+                      %input{ label: "Consent Obtained", type: "checkbox"}
+                      %span Consent Obtained
+
+                .alert.alert-info.margin-bottomgap5
+                  %h5.margin-topgap0 Inform Caller
+                  %p.padding-sidegap5.italic><
+                    I will be sending your information to Lawyers in your area who should be contacting you shortly.
+                .row
+                  .col-xs-6
+                    %button.btn.btn-primary{ type: "submit", value: "Next"}
+                      %i.fa.fa-paper-plane.fa-lg= " Send Lead by Form"
+                  .col-xs-6
+                    %p Leads will be sent to 4 Profiles

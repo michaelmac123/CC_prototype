@@ -1,0 +1,73 @@
+%h2.page-header
+  %span Lead Fills
+  %small (Click any entry to dial lead phone)
+  %small.pull-right.text-right
+    %span Calls Answered Today: 0
+    %br
+    %span Calls Answered This Week: 2
+.callList.col-md-12
+  .table.table-bordered.lead-fill-table
+    .table-header.callList-tablehead
+      .table-col-8><
+        .ghost-cell
+          %span Caller Name
+      .table-col-8><
+        .ghost-cell
+          %span Caller From#
+      .table-col-8><
+        .ghost-cell
+          %span Received At
+      .table-col-8><
+        .ghost-cell
+          %span Zip Code
+      .table-col-8><
+        .ghost-cell
+          %span Time Zone
+      .table-col-8><
+        .ghost-cell
+          %span Campaign Name
+      .table-col-8><
+        .ghost-cell
+          %span Previously Called
+      .table-col-8><
+        .ghost-cell
+          %span Remove
+
+    .callList-tablebody.table-body
+      %div{ class: "", style:"height:500px;overflow-x:hidden;overflow-y:scroll;" }
+        %div
+          %div{ style:"width:100%;height:0px;" }
+            .table-row{ ng:{repeat: "hangup in callCenter.hangups", click: "tab.selectTab(4)" } }
+              .table-col-8.caller_name><
+                .ghost-cell
+                  %span {{hangup.name}}
+
+              .table-col-8.from><
+                .ghost-cell
+                  %span {{hangup.phone_number}}
+
+              .table-col-8.received_at><
+                .ghost-cell
+                  %span {{hangup.received_at}}
+
+              .table-col-8.zip_code><
+                .ghost-cell
+                  %span {{hangup.zip_code}}
+
+              .table-col-8.time_zone><
+                .ghost-cell
+                  %span {{hangup.time_zone}}
+
+              .table-col-8.campaign_name><
+                .ghost-cell
+                  %span {{hangup.campaign_name}}
+
+              .table-col-8.snooze_info><
+                .ghost-cell
+                  %span {{hangup.previously_called}}
+
+              .table-col-8.remove_button.text-center><
+                .ghost-cell
+                  %span
+                    %button{ type: "button", class: "btn btn-sm btn-danger", ng:{click: "removeRow(hangup.name)"}}
+                      %i.fa.fa-times.fa-lg

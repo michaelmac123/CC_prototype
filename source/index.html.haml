@@ -1,0 +1,47 @@
+.container
+  .row{ng:{ controller: "LeadController as callCenter" } }
+    .app-container{ ng:{ controller: "TabController as tab" } }
+      .row
+        .col-xs-2.padding-rightgap0
+          %nav.text-right
+            %ul.text-right.nav.nav-pills.nav-stacked
+              %li{ ng:{ class: "tab.isSelected(1) ? 'active' : tab.isSelected(6) || tab.isSelected(5)  ? 'disabled' : '' " }}
+                %a{ href: "", ng:{ click: "tab.selectTab(1)"} }
+                  %h5
+                    %span Calls
+                    %span{ ng:{repeat: "call in filteredCalls = (callCenter.calls | filter:search)" }}
+                    %span.badge {{filteredCalls.length}}
+
+
+              %li{ ng:{ class:  "tab.isSelected(2) ? 'active' : tab.isSelected(6) || tab.isSelected(5) ? 'disabled' : '' "  }}
+                %a{ href: "", ng:{ click: "tab.selectTab(2)"}}
+                  %h5
+                    %span Lead Fills
+                    %span{ ng:{repeat: "lead in filteredLeads = (callCenter.leads | filter:search)" }}
+                    %span.badge {{filteredLeads.length}}
+
+              %li{ ng:{ class:  "tab.isSelected(3) ? 'active' : tab.isSelected(6) || tab.isSelected(5) ? 'disabled' : '' "  }}
+                %a{ href: "", ng:{ click: "tab.selectTab(3)"} }
+                  %h5
+                    %span Hangups
+                    %span{ ng:{repeat: "hangup in filteredHangups = (callCenter.hangups | filter:search)" }}
+                    %span.badge {{filteredHangups.length}}
+
+
+        .col-xs-10.call-que-container.bordered-left{ ng:{ show: "tab.isSelected(1)"}}
+          = partial "pages/calls"
+
+        .col-xs-10.call-que-container.bordered-left{ ng:{ show: "tab.isSelected(2)"}}
+          = partial "pages/lead_fills"
+
+        .col-xs-10.call-que-container.bordered-left{ ng:{ show: "tab.isSelected(3)"}}
+          = partial "pages/hangups"
+
+        .col-xs-10.call-que-container{ ng:{ show: "tab.isSelected(4)"}}
+          = partial "pages/connected_to_call"
+
+        .col-xs-10.call-que-container{ ng:{ show: "tab.isSelected(5)"}}
+          = partial "pages/reject_call"
+
+        .col-xs-10.call-que-container.call-page{ ng:{ show: "tab.isSelected(6)"}}
+          = partial "pages/continue_with_call"
