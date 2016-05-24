@@ -31,6 +31,7 @@ GEM
     ffi (1.9.10)
     font-awesome-middleman (4.5.0)
       middleman-core (~> 3.0)
+    git-version-bump (0.15.1)
     haml (4.0.7)
       tilt
     hike (1.2.3)
@@ -66,7 +67,11 @@ GEM
       sprockets-helpers (~> 1.1.0)
       sprockets-sass (~> 1.1.0)
     multi_json (1.12.1)
+    puma (3.4.0)
     rack (1.6.4)
+    rack-contrib (1.4.0)
+      git-version-bump (~> 0.15)
+      rack (~> 1.4)
     rack-test (0.6.3)
       rack (>= 1.0)
     rb-fsevent (0.9.7)
@@ -98,6 +103,8 @@ DEPENDENCIES
   bootstrap-sass
   font-awesome-middleman
   middleman (~> 3.2.0)
+  puma
+  rack-contrib
 
 BUNDLED WITH
    1.11.2
