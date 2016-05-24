@@ -2,6 +2,8 @@
 # the following line to use "https"
 source 'http://rubygems.org'
 
+ruby "2.2.4"
+
 gem "middleman", "~>3.3.0"
 
 gem "rack-contrib"
