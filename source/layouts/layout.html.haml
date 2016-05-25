@@ -8,7 +8,7 @@
 %html{lang: 'en', class: 'no-js', ng:{ app: 'callCenter' }}
   /<![endif]
   %head
-    %title #{data.page.title || "eLocal | Call Center"}
+    %title "eLocal | Call Center"
     %meta(http-equiv="content-type" content="text/html" charset="utf-8")
     %meta(http-equiv="x-ua-compatible" content="ie=edge,chrome=1")
     %meta(name="description" content="")
@@ -30,10 +30,12 @@
     %link(rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/apple-touch-icon-57x57-precomposed.png")
     %link(rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/apple-touch-icon-72x72-precomposed.png")
     %link(rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/apple-touch-icon-114x114-precomposed.png")
-    
-    %link{href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css", rel: "stylesheet", integrity: "sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1", crossorigin: "anonymous"}
+
+    -# Fonts
+    %link{href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel: "stylesheet", integrity: "sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==", crossorigin: "anonymous"}
 
     -# Stylesheets
+    %link{href: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", rel: "stylesheet", integrity: "sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==", crossorigin: "anonymous"}
     = stylesheet_link_tag 'application'
 
   %body#body{class: current_page.data.body_class || 'page', ng:{controller:'NotificationController as notifications'}}
@@ -96,4 +98,5 @@
     -# Javascripts
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js'
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'
+    %script{src: "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity: "sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==", crossorigin: "anonymous"}
     = javascript_include_tag 'application'

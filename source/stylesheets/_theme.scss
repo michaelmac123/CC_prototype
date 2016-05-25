@@ -238,7 +238,7 @@ label {
 // Set the backgrounds
 // // -------------------------
 .btn {
-  @extend .btn-default; }
+  @extend .btn-default !optional; }
 
 // make words wrap...please!
 .break-word {

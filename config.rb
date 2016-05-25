@@ -1,16 +1,6 @@
-###
-# Compass
-###
+activate :directory_indexes
 
-# Susy grids in Compass
-# First: gem install susy
-# require 'susy'
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
-
+set :relative_links, true
 ###
 # Page options, layouts, aliases and proxies
 ###
@@ -18,66 +8,53 @@
 # Per-page layout changes:
 #
 # With no layout
-# page "/path/to/file.html", :layout => false
-#
+page '/*.xml', layout: false
+page '/*.json', layout: false
+page '/*.txt', layout: false
+
 # With alternative layout
-# page "/path/to/file.html", :layout => :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
+
+# %w[index about rates-services FAQ policies-terms join-our-team get-quote].each do |page|
+#   page '/#{page}.html', layout: 'layout'
 # end
 
-# Proxy (fake) files
-# page "/this-page-has-no-template.html", :proxy => "/template-file.html" do
-#   @which_fake_page = "Rendering a fake page with a variable"
-# end
+# Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
+# proxy "/this-page-has-no-template.html", "/template-file.html", locals: {
+#  which_fake_page: "Rendering a fake page with a local variable" }
+
+# General configuration
+
+# Reload the browser automatically whenever files change
+configure :development do
+  activate :livereload
+end
 
 ###
 # Helpers
 ###
 
-# Automatic image dimensions on image_tag helper
-# activate :automatic_image_sizes
-
 # Methods defined in the helpers block are available in templates
 # helpers do
-#   def some_helper
-#     "Helping"
+#   def inline_svg(path, opts={})
+#     file = File.open("source/images/svg/#{path}.svg", "r")
+#     klass = opts[:class] ||= ""
+#     klass << " #{path}"
+#     svg = file.read
+#     svg = content_tag :span, svg, class: klass, title: opts[:title] || ""
 #   end
 # end
 
 set :css_dir, 'stylesheets'
 
-set :js_dir, 'javascripts'
-
-set :images_dir, 'images'
-
 # Build-specific configuration
 configure :build do
-  ignore 'images/*.psd'
-  ignore 'stylesheets/lib/*'
-  ignore 'stylesheets/vendor/*'
-  ignore 'javascripts/lib/*'
-  ignore 'javascripts/vendor/*'
-
-  # For example, change the Compass output style for deployment
+  # Minify CSS on build
   activate :minify_css
 
   # Minify Javascript on build
   activate :minify_javascript
 
-  # Enable cache buster
-  # activate :cache_buster
+  activate :relative_assets
 
-  # Use relative URLs
-  # activate :relative_assets
-
-  # Compress PNGs after build
-  # First: gem install middleman-smusher
-  # require "middleman-smusher"
-  # activate :smusher
-
-  # Or use a different image path
-  # set :http_path, "/Content/images/"
+  activate :gzip
 end
