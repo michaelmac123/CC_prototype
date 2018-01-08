@@ -84,7 +84,7 @@
           });
         }
 
-        window.addEventListener('load', setTimeout(notifyUser, 500));
+        // window.addEventListener('load', setTimeout(notifyUser, 500));
       }
     $('.dismiss-call').on('click', function(){
       $('.call-page').addClass('ng-hide');
